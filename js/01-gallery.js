@@ -14,21 +14,15 @@ function clickOnGallery(e) {
   }
   console.log(e.target.nodeName);
   const instance = basicLightbox.create(
-    ` <div class="modal"> <img src=${e.target.dataset.source} alt="Big Pictures"/> </div> `,
-    {
-      onShow: (instance) => {
-        galleryContainer.addEventListener("keydown", onEscapeButton);
-      },
-      onClose: (instance) => {
-        galleryContainer.removeEventListener("keydown", onEscapeButton);
-      },
-    }
+    `  <img src=${e.target.dataset.source} alt="Big Pictures"/>  `
   );
   instance.show();
-  function onEscapeButton(e) {
-    if (e.key === "Escape") {
-      instance.close();
-    }
+
+  window.addEventListener("keydown", onEscapeButton);
+}
+function onEscapeButton(e) {
+  if (e.key === "Escape") {
+    instance.close();
   }
 }
 
