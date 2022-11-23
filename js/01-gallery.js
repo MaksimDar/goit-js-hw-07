@@ -4,15 +4,15 @@ import { galleryItems } from "./gallery-items.js";
 const galleryContainer = document.querySelector(".gallery");
 const gallery = createGallery(galleryItems);
 
-galleryContainer.innerHTML = gallery;
+galleryContainer.insertAdjacentHTML("beforeend", gallery);
 galleryContainer.addEventListener("click", clickOnGallery);
 
 function clickOnGallery(e) {
   e.preventDefault();
-  if (e.target.nodeName !== "IMG") {
+  if (e.target.classList.contains(".gallery__image")) {
     return;
   }
-  console.log(e.target.nodeName);
+
   const instance = basicLightbox.create(
     `  <img src=${e.target.dataset.source} alt="Big Pictures"/>  `
   );
@@ -21,7 +21,7 @@ function clickOnGallery(e) {
   window.addEventListener("keydown", onEscapeButton);
 }
 function onEscapeButton(e) {
-  if (e.key === "Escape") {
+  if (e.code === "Escape") {
     instance.close();
   }
 }
