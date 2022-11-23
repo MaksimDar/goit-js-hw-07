@@ -43,4 +43,3 @@ function createGallery(galleryItems) {
     })
     .join("");
 }
-vmvmvvvvvnvnvnvnvnv;
