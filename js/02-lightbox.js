@@ -1,22 +1,18 @@
 import { galleryItems } from "./gallery-items.js";
 // Change code below this line
-
-console.log(galleryItems);
-
 const galleryContainer = document.querySelector(".gallery");
-const gallery = createGallery(galleryItems);
 
-galleryContainer.insertAdjacentHTML("beforeend", gallery);
-galleryContainer.addEventListener("click", clickOnGallery);
+const gallery = createGalleryPhotos(galleryItems);
+galleryContainer.innerHTML = gallery;
 
-function createGallery(galleryItems) {
+function createGalleryPhotos(galleryItems) {
   return galleryItems
     .map(({ preview, original, description }) => {
-      return `<div class="gallery__item">
-          <a class="gallery__link" href="${original}">
-		    <img class="gallery__image" src="${preview}" data-source="${original}" alt="${description}" />
-	      </a>
-        </div>`;
+      return `<li>
+                <a class="gallery__item" href="${original}">
+		            <img class="gallery__image" src="${preview}" alt="${description}"/>
+                </a>
+            </li>`;
     })
     .join("");
 }

@@ -4,7 +4,7 @@ import { galleryItems } from "./gallery-items.js";
 const galleryContainer = document.querySelector(".gallery");
 const gallery = createGallery(galleryItems);
 
-galleryContainer.insertAdjacentHTML("beforeend", gallery);
+galleryContainer.innerHTML = gallery;
 galleryContainer.addEventListener("click", clickOnGallery);
 
 function clickOnGallery(e) {
@@ -13,15 +13,23 @@ function clickOnGallery(e) {
     return;
   }
   console.log(e.target.nodeName);
-  const instance = basicLight.create(
-    `<img src="${e.target.dataset.sourse}" width = "800", height = "600">`
+  const instance = basicLightbox.create(
+    ` <div class="modal"> <img src=${e.target.dataset.source} alt="Big Pictures"/> </div> `,
+    {
+      onShow: (instance) => {
+        galleryContainer.addEventListener("keydown", onEscapeButton);
+      },
+      onClose: (instance) => {
+        galleryContainer.removeEventListener("keydown", onEscapeButton);
+      },
+    }
   );
   instance.show();
-  galleryContainer.addEventListener("keydown", (e) => {
-    if (e.code === "Escape") {
+  function onEscapeButton(e) {
+    if (e.key === "Escape") {
       instance.close();
     }
-  });
+  }
 }
 
 function createGallery(galleryItems) {
