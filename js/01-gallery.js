@@ -4,7 +4,7 @@ import { galleryItems } from "./gallery-items.js";
 const galleryContainer = document.querySelector(".gallery");
 const gallery = createGallery(galleryItems);
 
-galleryContainer.insertAdjacentHTML("beforeend", gallery);
+galleryContainer.innerHTML = gallery;
 galleryContainer.addEventListener("click", clickOnGallery);
 
 function clickOnGallery(e) {
