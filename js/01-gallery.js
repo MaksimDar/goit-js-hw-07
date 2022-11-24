@@ -7,7 +7,6 @@ const gallery = createGallery(galleryItems);
 galleryContainer.innerHTML = gallery;
 galleryContainer.addEventListener("click", clickOnGallery);
 
-let instance;
 function clickOnGallery(event) {
   event.preventDefault();
   if (event.target.nodeName !== "IMG") {
@@ -15,7 +14,7 @@ function clickOnGallery(event) {
   }
   console.log(event.target.nodeName);
 
-  instance = basicLightbox.create(
+  const instance = basicLightbox.create(
     `
       <div class="modal">
          <img src="${event.target.dataset.source}" alt="Big Pictures" width="800" height="600">
