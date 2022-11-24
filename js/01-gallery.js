@@ -7,21 +7,21 @@ const gallery = createGallery(galleryItems);
 galleryContainer.innerHTML = gallery;
 galleryContainer.addEventListener("click", clickOnGallery);
 
-function clickOnGallery(e) {
-  e.preventDefault();
-  if (e.target.classList.contains(".gallery__image")) {
-    return;
-  }
+function clickOnGallery(event) {
+  event.preventDefault();
+  //   if (event.target.classList.contains(".gallery__image")) {
+  //     return;
+  //   }
 
   const instance = basicLightbox.create(
-    `  <img src=${e.target.dataset.source} alt="Big Pictures"/>  `
+    `  <img src=${event.target.dataset.source} alt="Big Pictures"/>  `
   );
   instance.show();
 
   window.addEventListener("keydown", onEscapeButton);
 }
-function onEscapeButton(e) {
-  if (e.code === "Escape") {
+function onEscapeButton(event) {
+  if (event.code === "Escape") {
     instance.close();
   }
 }
